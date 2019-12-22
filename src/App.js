@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function getRowWithСolumns(tr, td){
+	let columns = [];
+	for(let i = 1; i <= td; i++){
+		columns.push(<td>{i}</td>)
+	}
+
+	return (
+		<tr>
+			{ columns }
+		</tr>
+	)
+}
+
+class App extends React.Component {
+	state={
+		coll : 4,
+		row : 4
+	}
+
+	render(){
+		let table = [];
+
+		for(let i = 1; i <= this.state.row; i++){
+			table.push(getRowWithСolumns(i, this.state.coll))
+		}
+
+		return (
+			<div className='wrapper'>
+				<table border="1" className='table'>
+					{ table }
+				</table>
+			</div>
+		)
+	}
+
 }
 
 export default App;
